@@ -140,7 +140,7 @@ export const runWorkflowTask = task({
       // both the success and failure paths.
       const startedAt = Date.now()
       try {
-        const output = await executor({ values, getStagehand })
+        const output = await executor({ values, getStagehand, orgId })
         outputs[id] = output
         step.output = output
       } catch (error) {

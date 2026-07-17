@@ -9,6 +9,7 @@ import { and, eq, desc } from "drizzle-orm"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { PublishButton } from "@/components/publish-button"
 import {
   Card,
   CardContent,
@@ -112,6 +113,7 @@ export default async function InventoryPage() {
                   <TableHead className="text-white/60 text-right">Price</TableHead>
                   <TableHead className="text-white/60">Status</TableHead>
                   <TableHead className="text-white/60">Listed On</TableHead>
+                  <TableHead className="text-white/60 w-20">Action</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -167,6 +169,9 @@ export default async function InventoryPage() {
                             <span className="text-xs text-white/30">Not listed</span>
                           )}
                       </div>
+                    </TableCell>
+                    <TableCell>
+                      <PublishButton stockNo={v.stockNo} />
                     </TableCell>
                   </TableRow>
                 ))}
