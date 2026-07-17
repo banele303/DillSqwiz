@@ -39,3 +39,4 @@ coverage/
 # Misc
 *.pem
 migration.sql
+vercel-env.txt
