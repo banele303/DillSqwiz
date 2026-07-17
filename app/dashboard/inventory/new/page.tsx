@@ -1,7 +1,7 @@
 "use client";
 
 
-import { useActionState, useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Upload } from "lucide-react"
 import Link from "next/link"
@@ -80,7 +80,7 @@ async function addVehicleAction(
 
 export default function AddVehiclePage() {
   const router = useRouter()
-  const [state, formAction, isPending] = useActionState(addVehicleAction, null)
+  const [state, setState] = useState<{ error?: string; success?: boolean } | null>(null)
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
@@ -104,7 +104,7 @@ export default function AddVehiclePage() {
       </div>
 
       <div className="flex-1 overflow-auto p-6">
-        <form ref={formRef} action={formAction} className="max-w-3xl mx-auto space-y-8">
+        <form ref={formRef} onSubmit={handleSubmit} className="max-w-3xl mx-auto space-y-8">
           {state?.error && (
             <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
               {state.error}
@@ -285,7 +285,7 @@ export default function AddVehiclePage() {
             </Button>
             <Button
               type="submit"
-              disabled={isPending}
+              disabled={submitting}
               className="bg-orange-500 text-white hover:bg-orange-600 min-w-[140px]"
             >
               {isPending ? "Adding..." : "Add Vehicle"}

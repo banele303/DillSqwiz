@@ -1,7 +1,7 @@
 "use client";
 
 
-import { useActionState, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Upload, Download } from "lucide-react"
 import Link from "next/link"
@@ -75,7 +75,7 @@ ST24002,BMW,X3 xDrive20d,2023,28000,Black,599000,automatic,diesel`
 
 export default function ImportPage() {
   const router = useRouter()
-  const [state, formAction, isPending] = useActionState(importVehiclesAction, null)
+  const [state, setState] = useState<{ error?: string; count?: number } | null>(null)
 
   return (
     <div className="flex flex-col h-full bg-[#030712]">
@@ -161,7 +161,7 @@ export default function ImportPage() {
                     </Button>
                     <Button
                       type="submit"
-                      disabled={isPending}
+                      disabled={submitting}
                       className="bg-orange-500 text-white hover:bg-orange-600"
                     >
                       {isPending ? "Importing..." : "Import Vehicles"}

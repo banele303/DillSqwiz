@@ -1,7 +1,7 @@
 "use client";
 
 
-import { useActionState, useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Wand2, Eye } from "lucide-react"
 import Link from "next/link"
@@ -93,7 +93,7 @@ async function createFinanceAppAction(
 
 export default function NewFinanceAppPage() {
   const router = useRouter()
-  const [state, formAction, isPending] = useActionState(createFinanceAppAction, null)
+  const [state, setState] = useState<{ error?: string; success?: boolean } | null>(null)
   const [showPreview, setShowPreview] = useState(false)
 
   useEffect(() => {
@@ -297,7 +297,7 @@ export default function NewFinanceAppPage() {
             </Button>
             <Button
               type="submit"
-              disabled={isPending}
+              disabled={submitting}
               className="bg-orange-500 text-white hover:bg-orange-600 min-w-[180px]"
             >
               {isPending ? "Saving..." : "Save Application"}
