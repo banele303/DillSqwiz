@@ -37,7 +37,7 @@ export default async function LandingPage() {
                   <Link href="/dashboard">Dashboard</Link>
                 </Button>
                 <div className="border-l border-white/10 pl-4 h-6 flex items-center">
-                  <UserButton afterSignOutUrl="/" />
+                  <UserButton />
                 </div>
               </>
             ) : (
