@@ -152,7 +152,7 @@ export default async function InventoryPage() {
                           v.listedOnFacebook && "FB",
                           v.listedOnWebsite && "WB",
                         ]
-                          .filter(Boolean)
+                          .filter((p): p is string => !!p)
                           .map((p) => (
                             <span
                               key={p}
