@@ -2,20 +2,19 @@
 
 import { auth } from "@clerk/nextjs/server"
 import { revalidatePath } from "next/cache"
+import { redirect } from "next/navigation"
 import { db } from "@/lib/db"
 import { vehicles } from "@/lib/db/schema"
 
-export async function importVehiclesAction(
-  _prev: any,
-  formData: FormData
-): Promise<{ error?: string; count?: number } | null> {
+export async function importVehiclesAction(formData: FormData) {
   const { orgId } = await auth()
-  if (!orgId) return { error: "Not authenticated" }
+  if (!orgId) throw new Error("Not authenticated")
+
   const csv = formData.get("csv") as string
-  if (!csv) return { error: "No CSV data" }
+  if (!csv) throw new Error("No CSV data")
 
   const lines = csv.trim().split("\n").filter(Boolean)
-  if (lines.length < 2) return { error: "Need header + at least 1 row" }
+  if (lines.length < 2) throw new Error("Need header + at least 1 row")
 
   const results: any[] = []
   for (let i = 1; i < lines.length; i++) {
@@ -30,9 +29,9 @@ export async function importVehiclesAction(
       status: "in_stock",
     })
   }
-  if (!results.length) return { error: "No valid rows" }
+  if (!results.length) throw new Error("No valid rows")
 
   await db.insert(vehicles).values(results)
   revalidatePath("/dashboard/inventory")
-  return { count: results.length }
+  redirect("/dashboard/inventory")
 }
