@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 
 import { useState, useRef, useEffect } from "react"
 import { Send, Bot, User, RefreshCw, Car, TrendingUp, Users } from "lucide-react"

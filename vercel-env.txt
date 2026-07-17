@@ -1,0 +1,34 @@
+# ============================================
+# DEALX - PRODUCTION ENVIRONMENT VARIABLES
+# Copy these into Vercel Dashboard
+# ============================================
+
+# DATABASE
+DATABASE_URL=postgresql://neondb_owner:***@ep-summer-truth-ahvj1kp2-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require
+DATABASE_URL_UNPOOLED=postgresql://neondb_owner:***@ep-summer-truth-ahvj1kp2.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require
+
+# CLERK AUTH
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_Y2FsbS1tb2xsdXNrLTgyLmNsZXJrLmFjY291bnRzLmRldiQ
+CLERK_SECRET_KEY=sk_test_q9OHkQaz92VWmh2z8niMOVkobyhG86TC7PCb9r8ajL
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/dashboard
+NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/dashboard
+
+# TRIGGER.DEV
+TRIGGER_SECRET_KEY=tr_dev_sjtIADMsGCuLnEaTsM1r
+
+# LIVEBLOCKS
+NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY=pk_prod_gU1MhZNtvqwz6PLuuvEzeyIBHvydIEVReeEpTTrvsa-MnXRDsgcJPdYx29hzQirc
+LIVEBLOCKS_SECRET_KEY=sk_prod_22LuhdAgrVxztxNtEvvCrz0_FK82prf3SghLcIti3ra5XdhjKFENmfpp6giUl1QB
+
+# BROWSERBASE
+BROWSERBASE_API_KEY=bb_live_zt9M-NageLWWr4D61XhOXk1WP0s
+
+# LLM (DEEPSEEK)
+LLM_API_KEY=sk-6f00b232f9f0492fa87aa1e12920f50a
+LLM_MODEL=deepseek-chat
+
+# OPTIONAL (ADD LATER)
+# RESEND_API_KEY=
+# SENT_DM_API_KEY=
